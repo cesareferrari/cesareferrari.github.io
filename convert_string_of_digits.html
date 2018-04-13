@@ -1,0 +1,88 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel = "stylesheet" type = "text/css" href = "styles/markdown-stylesheet.css" >
+	</head>
+	<body>
+<h1>Convert a string of digits into its corresponding integer</h1>
+<p>Today’s problem is to write a method that converts a string of digits into a real integer.</p>
+<p>The method will perform the same function as the standard Ruby String#to_i method.</p>
+<p>The method will be called string_to_integer and will take one parameter, a string of digits, like ‘4321’.</p>
+<p>For now, we will assume all characters in the string are numeric so there is no verification in the method itself.</p>
+<h3>Mapping between digits and integers</h3>
+<p>To start, I need to create some sort of mapping between the string digit and the corresponding number, so the digit can be substituted by the number when it’s necessary.</p>
+<p>One way to build the mapping is to use a hash that maps digits to their corresponding number, so the string ‘1’ is mapped to the number 1, the string ‘2’ is mapped to the number 2 and so on.</p>
+<p>This hash gets saved into a constant that can be referred by the string_to_integer method later.</p>
+<pre><code>DIGITS = { ‘1’ =&gt; 1, ‘2’ =&gt; 2, ‘3’ =&gt; 3, ‘4’ =&gt; 4, ‘5’ =&gt; 5, ‘6’ =&gt; 6, ‘7’ =&gt; 7, ‘8’ =&gt; 8, ‘9’ =&gt; 9, ‘0’ =&gt; 0 }
+
+</code></pre>
+<h3>First idea</h3>
+<p>My initial idea in implementing this method is to:</p>
+<ul>
+<li>
+<p>read the digits from right to left,</p>
+</li>
+<li>
+<p>convert the digit to a number and</p>
+</li>
+<li>
+<p>add the number to a result, in the correct position.</p>
+</li>
+</ul>
+<p>So, if the string is ‘4321’, the last digit (‘1’) is at the ones position. The second digit from the right (‘2’) is at the tens position. The third digit is at the hundreds position and the last digit is at the thousands position.</p>
+<p>As we can see we have this concept of <em>number</em> <em>position</em> to take into account.</p>
+<p>We also have the concept of an <em>accumulator</em>, which is a variable that holds the final number while we are processing it.
+The accumulator is itself a digit and the initial value is zero.</p>
+<h3>Implementing the method</h3>
+<p>So, we can start writing our method by initializing these two variables: the result variable, and the position variable.</p>
+<p>Since we start examining the number from right to left, we need to initialize the position variable to 1, which represents the ones position.</p>
+<pre><code>def string_to_integer(string)
+	result = 0
+	position = 1
+
+	# further code here
+end
+</code></pre>
+<p>The next step is to build up the result number. Since we start examining the digits from the right, I can reverse the string and iterate through the numbers one by one.</p>
+<p>The first digit will be converted into its integer representation by looking up the DIGITS hash, so, for example, the string ‘1’ is converted into the integer 1.</p>
+<p>Step 2 is to add this integer into the correct position, so we multiply it by the current position, which is the ones.</p>
+<p>Finally, we can add the number to the temporary result and move to the next digit.</p>
+<pre><code>result += DIGITS[char] * position
+</code></pre>
+<p>For the first digit (‘1’), DIGITS[char] will return 1.</p>
+<p>At this point, the position variable is <code>1</code>, so we multiply <code>1 * 1</code>, which returns <code>1</code>.</p>
+<p>Then we add this to the result variable, which is 0. When we add <code>1</code> to <code>0</code> we get <code>1</code>.</p>
+<p>After having added the digit in the ones position, we must move on to the tenths position, so we need to modify the position variable to represent the tenths. We do this by multiplying position by 10.</p>
+<pre><code>position *= 10
+</code></pre>
+<p>The iteration for all the digits in the string is shown below:</p>
+<pre><code>string.reverse.chars.each do |char|
+	result += DIGITS[char] * position
+	position *= 10
+end
+</code></pre>
+<p>Each digit is converted to an integer and added from right to left in the correct position.
+The end result is the string converted to an integer, so the last task our method has to do is to return the result of the whole operation.</p>
+<h3>Full method</h3>
+<pre><code>def string_to_integer(string)
+	result = 0
+	position = 1
+
+	string.reverse.chars.each do |char|
+		result += DIGITS[char] * position
+		position *= 10
+	end
+
+	result
+end
+</code></pre>
+<p>This method will correctly convert a string of digits to its corresponding integer, giving results like:</p>
+<pre><code>string_to_integer('4321') == 4321
+string_to_integer('570') == 570
+</code></pre>
+<h3>Next Step</h3>
+<p>Can this implementation be improved? Can other solutions be found? Of course they can! See another solution in <a href="https://medium.com/@cesareferrari/convert-a-string-of-digits-into-its-corresponding-integer-alternative-solution-a4f56af2d395#.a9554zgzs">this post</a>.</p>
+	</body>
+	</html>

@@ -4,6 +4,7 @@ require 'commonmarker'
 
 MD_EXTENSION = /\.md$/
 HTML_EXTENSION = '.html'
+HTML_DIR = File.expand_path("#{File.dirname(__FILE__)}/../pages")
 
 filename = ARGV[0]
 
@@ -15,8 +16,8 @@ def header
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-		<link rel = "stylesheet" type = "text/css" href = "styles/markdown-stylesheet.css" >
+		<title>Cesare Ferrari</title>
+		<link rel = "stylesheet" type = "text/css" href = "../styles/markdown-stylesheet.css" >
 	</head>
 	<body>
 	HEREDOC
@@ -34,7 +35,7 @@ content = File.read(filename)
 document += CommonMarker.render_html(content, :DEFAULT)
 document += footer
 
-html_filename = filename.gsub(MD_EXTENSION, HTML_EXTENSION)
+html_filename = "#{HTML_DIR}/#{filename.gsub(MD_EXTENSION, HTML_EXTENSION)}"
 
 File.open(html_filename, 'w') do |file|
 	file.puts document

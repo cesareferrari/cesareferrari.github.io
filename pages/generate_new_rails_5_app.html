@@ -1,0 +1,91 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Cesare Ferrari</title>
+		<link rel = "stylesheet" type = "text/css" href = "../styles/markdown-stylesheet.css" >
+	</head>
+	<body>
+<h3>Install new versions of Ruby and Rails if needed</h3>
+<p>List the available versions of Ruby with <code>rbenv versions</code>. The current version has an asterisk:</p>
+<pre><code class="language-sh">rbenv versions
+  system
+  2.0.0-p247
+  2.3.1
+* 2.3.3 (set by /Users/estelle/Sites/.ruby-version)
+</code></pre>
+<p>Set a different current version with rbenv local:</p>
+<pre><code class="language-sh">rbenv local 2.3.1
+</code></pre>
+<p>List all available Ruby versions to install with rbenv install -l</p>
+<pre><code class="language-sh">rbenv install -l
+Available versions:
+  1.8.5-p52
+  1.8.5-p113
+  1.8.5-p114
+  1.8.5-p115
+  1.8.5-p231
+  ...
+  ...
+</code></pre>
+<p>Install a particular version with<code>rbenv install [version]</code></p>
+<pre><code class="language-sh">rbenv install 2.4.3
+</code></pre>
+<p>Install bundler (make sure you have the targeted version of Ruby)</p>
+<pre><code class="language-sh">rbenv local  #output current version of Ruby
+2.4.3
+
+gem install bundler
+</code></pre>
+<p>Install Rails (optionally specifying a version)</p>
+<pre><code class="language-sh">gem install rails -v 5.1.4
+</code></pre>
+<h3>Create new app</h3>
+<pre><code class="language-sh">rails _5.1.4_ new flix -T -d postgresql  # skip test framework, use postgresql
+</code></pre>
+<p>It’s also possible to generate a new Rails app inside an existing directory. In this case, create the directory, cd into it and issue the following command:</p>
+<pre><code class="language-sh">rails new . -T -d postgresql
+</code></pre>
+<h3>Install Rspec</h3>
+<pre><code class="language-ruby"># Gemfile
+
+group :test, :development do
+  gem &quot;rspec-rails&quot;, &quot;3.5.0.beta3&quot;
+end
+
+group :test do
+  gem &quot;capybara&quot;, &quot;2.7.1&quot;
+end
+</code></pre>
+<pre><code class="language-sh">bundle install
+</code></pre>
+<pre><code class="language-sh">rails generate rspec:install
+</code></pre>
+<p>If you get an error about not being able to find the rspec:install generator, it may be because you have another copy of the Rails environment running in the background. To clear things up, you may need to run this command:</p>
+<pre><code class="language-sh">spring stop
+</code></pre>
+<p>Then re-run the generator:</p>
+<pre><code class="language-sh">rails generate rspec:install
+</code></pre>
+<p>Run the rspec command to make sure it works</p>
+<pre><code class="language-sh">rspec
+</code></pre>
+<h3>Create databases</h3>
+<pre><code class="language-sh">rails db:create
+rails db:migrate  # creates schema.rb for testing
+</code></pre>
+<h3>Initialize Git repository</h3>
+<p>Repository may already be initialized, see if there is a <code>.git</code> folder already before initializing again.</p>
+<pre><code class="language-sh">git init
+</code></pre>
+<p>Add .DS_Store to .gitignore</p>
+<pre><code class="language-sh"># .gitignore
+
+.DS_Store
+</code></pre>
+<p>Add initial commit</p>
+<pre><code class="language-sh">git add .
+git commit -m &quot;Initial commit&quot;
+</code></pre>
+	</body>
+	</html>

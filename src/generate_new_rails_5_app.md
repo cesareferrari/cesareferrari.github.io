@@ -1,3 +1,7 @@
+# Generate a new Rails 5 application
+
+This article describes how to generate a new Rails 5 application.
+
 ### Install new versions of Ruby and Rails if needed
 
 List the available versions of Ruby with `rbenv versions`. The current version has an asterisk:

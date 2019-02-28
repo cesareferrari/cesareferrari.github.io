@@ -1,8 +1,6 @@
 #Readme
 
-I am Cesare Ferrari.
-
-This is my personal site where I publish articles on Web development.
+This web page is a collection of all the tools I use for web development.
 
 ##How to convert Markdown files to html
 

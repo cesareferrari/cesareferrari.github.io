@@ -187,6 +187,11 @@ header {
   .font-normal;
   color: white;
   .shadow;
+
+  @media screen and (max-width: 500px) {
+    margin-top: 4rem;
+    width: 90%;
+  }
 }
 
 .info-contact {
@@ -194,8 +199,26 @@ header {
   justify-content: space-between;
   height: 444px;
 
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    height: initial;
+  }
+
+  .name {
+    @media screen and (max-width: 500px) {
+      order: 2;
+      width: 100%;
+    }
+
+  }
+
   img {
     width: 444px;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+
   }
 }
 

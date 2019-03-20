@@ -246,13 +246,36 @@ header nav a:hover {
   color: white;
   box-shadow: 3px 3px 12px #808080;
 }
+@media screen and (max-width: 500px) {
+  .info {
+    margin-top: 4rem;
+    width: 90%;
+  }
+}
 .info-contact {
   display: flex;
   justify-content: space-between;
   height: 444px;
 }
+@media screen and (max-width: 500px) {
+  .info-contact {
+    flex-direction: column;
+    height: initial;
+  }
+}
+@media screen and (max-width: 500px) {
+  .info-contact .name {
+    order: 2;
+    width: 100%;
+  }
+}
 .info-contact img {
   width: 444px;
+}
+@media screen and (max-width: 500px) {
+  .info-contact img {
+    width: 100%;
+  }
 }
 .social li {
   display: inline-block;

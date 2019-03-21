@@ -135,8 +135,8 @@ body {
   height: 100%;
   font-size: 62.5%;
 }
-/* Colors */
-/* Typography */
+/* Variables */
+/* Mixins */
 .font-normal {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -148,6 +148,19 @@ body {
   font-weight: 700;
   color: #204055;
   font-size: 1.8rem;
+}
+.anchor-white {
+  color: white;
+  text-decoration: none;
+}
+.anchor-white:hover {
+  color: #D4C512;
+}
+.shadow {
+  box-shadow: 3px 3px 12px #808080;
+}
+.shadow-up {
+  box-shadow: 5px 5px 16px #808080;
 }
 p {
   line-height: 2.4rem;
@@ -171,7 +184,6 @@ ul {
 ul li {
   margin-bottom: 1.2rem;
 }
-/* Buttons */
 .button {
   background-color: #708B30;
   padding: 1.6rem 3rem;
@@ -190,14 +202,6 @@ ul li {
   background-color: #516523;
   box-shadow: 5px 5px 16px #808080;
 }
-/* Effects */
-.shadow {
-  box-shadow: 3px 3px 12px #808080;
-}
-.shadow-up {
-  box-shadow: 5px 5px 16px #808080;
-}
-/* Styles */
 .bg-image {
   position: absolute;
   top: 0;
@@ -226,10 +230,10 @@ header nav a {
   font-weight: 400;
   color: #204055;
   font-size: 1.8rem;
-  color: white;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: white;
+  text-decoration: none;
 }
 header nav a:hover {
   color: #D4C512;
@@ -284,6 +288,16 @@ header nav a:hover {
 .social li:first-child {
   margin-left: 0;
 }
+.social li a {
+  color: white;
+  text-decoration: none;
+}
+.social li a:hover {
+  color: #D4C512;
+}
+.social li a .fab {
+  font-size: 4rem;
+}
 .name {
   width: 65%;
   padding: 4rem;
@@ -306,9 +320,20 @@ header nav a:hover {
   width: 80%;
   margin: auto;
 }
+@media screen and (max-width: 500px) {
+  .history {
+    flex-direction: column;
+  }
+}
 .history .education,
 .history .work {
   width: 48%;
+}
+@media screen and (max-width: 500px) {
+  .history .education,
+  .history .work {
+    width: 100%;
+  }
 }
 .history .education h2,
 .history .work h2 {
@@ -356,4 +381,9 @@ header nav a:hover {
   color: #379EE6;
   text-transform: uppercase;
   font-size: 1.5rem;
+}
+.history .education .card-work,
+.history .work .card-work {
+  border: 1px solid #708B30;
+  border-left: 12px solid #708B30;
 }

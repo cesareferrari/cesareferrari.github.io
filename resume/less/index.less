@@ -59,15 +59,16 @@ html, body {
 }
 
 
-/* Colors */
+/* Variables */
 
 @yellow: #D4C512;
 @green: #708B30;
 @text-color: #204055;
 @blue: #379EE6;
+@phone: ~"screen and (max-width: 500px)";
 
 
-/* Typography */
+/* Mixins */
 
 .font-normal {
   font-family: 'Roboto', sans-serif;
@@ -83,13 +84,35 @@ html, body {
   font-size: 1.8rem;
 }
 
+
+.anchor-white {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: @yellow;
+  }
+}
+
+.shadow {
+  box-shadow: 3px 3px 12px lighten(black, 50%);
+}
+
+.shadow-up {
+  box-shadow: 5px 5px 16px lighten(black, 50%);
+}
+
+
+
+
+
 p {
   line-height: 2.4rem;
   margin-bottom: 2.4rem;
 }
 
 h1 {
-  .font-bold;
+  .font-bold();
   font-size: 3.6rem;
   margin-bottom: 2rem;
 }
@@ -106,39 +129,22 @@ ul {
   }
 }
 
-
-/* Buttons */
-
 .button {
   background-color: @green;
   padding: 1.6rem 3rem;
-  .font-normal;
+  .font-normal();
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
   display: inline-block;
-  .shadow;
+  .shadow();
 
   &:hover {
     background-color: darken(@green, 10%);
-    .shadow-up;
+    .shadow-up();
   }
 }
-
-
-/* Effects */
-
-.shadow {
-  box-shadow: 3px 3px 12px lighten(black, 50%);
-}
-
-
-.shadow-up {
-  box-shadow: 5px 5px 16px lighten(black, 50%);
-}
-
-/* Styles */
 
 .bg-image {
   position: absolute;
@@ -166,15 +172,10 @@ header {
     justify-content: space-around;
 
     a {
-      .font-normal;
-      color: white;
-      text-decoration: none;
+      .font-normal();
       text-transform: uppercase;
       letter-spacing: 1px;
-
-      &:hover {
-        color: @yellow;
-      }
+      .anchor-white();
     }
   }
 }
@@ -184,28 +185,31 @@ header {
   margin: 200px auto 0;
   width: 80%;
   background-color: @green;
-  .font-normal;
+  .font-normal();
   color: white;
-  .shadow;
+  .shadow();
 
-  @media screen and (max-width: 500px) {
+
+//@media screen and (max-width: 500px) {
+@media @phone {
     margin-top: 4rem;
     width: 90%;
   }
 }
+
 
 .info-contact {
   display: flex;
   justify-content: space-between;
   height: 444px;
 
-  @media screen and (max-width: 500px) {
+  @media @phone {
     flex-direction: column;
     height: initial;
   }
 
   .name {
-    @media screen and (max-width: 500px) {
+    @media @phone {
       order: 2;
       width: 100%;
     }
@@ -215,7 +219,7 @@ header {
   img {
     width: 444px;
 
-    @media screen and (max-width: 500px) {
+    @media @phone {
       width: 100%;
     }
 
@@ -229,6 +233,14 @@ header {
 
     &:first-child {
       margin-left: 0;
+    }
+
+    a {
+      .anchor-white();
+
+      .fab {
+        font-size: 4.0rem;
+      }
     }
   }
 }
@@ -259,26 +271,34 @@ header {
   width: 80%;
   margin: auto;
 
+  @media @phone {
+    flex-direction: column;
+  }
+
   .education, .work {
     width: 48%;
 
+    @media @phone {
+      width: 100%;
+    }
+
     h2 {
-      .font-normal;
+      .font-normal();
       color: @blue;
       font-size: 3.6rem;
       margin-bottom: 3.6rem;
     }
 
     .card {
-      .font-normal;
+      .font-normal();
       padding: 2rem 1rem 1rem 3rem;
       border: 1px solid @blue;
       border-left: 12px solid @blue;
       margin-bottom: 4rem;
-      .shadow;
+      .shadow();
 
       h2 {
-        .font-bold;
+        .font-bold();
         font-size: 2.1rem;
         color: lighten(@text-color, 8%);
         margin-bottom: 2rem;
@@ -290,12 +310,17 @@ header {
 
       h4 {
         margin-bottom: 1.6rem;
-        .font-bold;
+        .font-bold();
         color: @blue;
         text-transform: uppercase;
         font-size: 1.5rem;
 
       }
+    }
+
+    .card-work {
+      border: 1px solid @green;
+      border-left: 12px solid @green;
     }
 
   }

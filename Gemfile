@@ -4,4 +4,4 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem 'commonmarker', '~> 0.17.9'
+gem 'commonmarker', '~> 0.23.4'
